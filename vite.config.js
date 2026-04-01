@@ -4,4 +4,16 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    proxy: {
+      '/hf-api': {
+        target: 'https://api-inference.huggingface.co',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(
+          /^\/hf-api$/,
+          '/models/meta-llama/Llama-3.2-11B-Vision-Instruct/v1/chat/completions'
+        ),
+      },
+    },
+  },
 })

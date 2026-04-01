@@ -1,4 +1,6 @@
-const HF_ENDPOINT = 'https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-11B-Vision-Instruct/v1/chat/completions'
+const HF_ENDPOINT = import.meta.env.DEV
+  ? '/hf-api'
+  : 'https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-11B-Vision-Instruct/v1/chat/completions'
 
 const SYSTEM_PROMPT = `You are an expert scrap metal evaluator with 20 years of experience.
    Analyze the provided photos and return ONLY valid JSON, no explanation, no markdown.`
